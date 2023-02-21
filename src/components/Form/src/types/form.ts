@@ -16,6 +16,7 @@ export interface FormSchema {
   giProps?: GridItemProps;
   isFull?: boolean;
   suffix?: string;
+  NInputGroupNSelect?: object;
 }
 
 export interface FormProps {

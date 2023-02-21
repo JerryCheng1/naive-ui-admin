@@ -26,6 +26,22 @@
             ></slot>
           </template>
 
+          <!--NInputGroup+NSelect-->
+          <template v-else-if="schema.component === 'NInputGroupNSelect'">
+            <n-input-group>
+              <n-select
+                :size="schema.NInputGroupNSelect?.size"
+                :options="schema.NInputGroupNSelect?.options"
+                v-model:value="formModel[schema.NInputGroupNSelect?.field]"
+                :style="{ width: schema.NInputGroupNSelect?.width }"
+              />
+              <n-input
+                :size="schema.NInputGroupNSelect?.size"
+                v-model:value="formModel[schema.field]"
+              />
+            </n-input-group>
+          </template>
+
           <!--NCheckbox-->
           <template v-else-if="schema.component === 'NCheckbox'">
             <n-checkbox-group v-model:value="formModel[schema.field]">

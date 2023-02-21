@@ -27,7 +27,7 @@ export const basicProps = {
   //大小
   size: {
     type: String,
-    default: 'medium',
+    default: 'small',
   },
   //标签位置
   labelPlacement: {
@@ -54,7 +54,7 @@ export const basicProps = {
   // 确认按钮文字
   submitButtonText: {
     type: String,
-    default: '查询',
+    default: '搜索',
   },
   //重置按钮文字
   resetButtonText: {
