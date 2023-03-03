@@ -30,13 +30,35 @@
           <template v-else-if="schema.component === 'NInputGroupNSelect'">
             <n-input-group>
               <n-select
-                :size="schema.NInputGroupNSelect?.size"
-                :options="schema.NInputGroupNSelect?.options"
-                v-model:value="formModel[schema.NInputGroupNSelect?.field]"
-                :style="{ width: schema.NInputGroupNSelect?.width }"
+                :size="schema.NInputGroupNSelect?.selectOne.size"
+                :options="schema.NInputGroupNSelect?.selectOne.options"
+                v-model:value="formModel[schema.NInputGroupNSelect?.selectOne.field]"
+                :style="{ width: schema.NInputGroupNSelect?.selectOne.width }"
               />
               <n-input
-                :size="schema.NInputGroupNSelect?.size"
+                :size="schema.NInputGroupNSelect?.input.size"
+                v-model:value="formModel[schema.field]"
+              />
+            </n-input-group>
+          </template>
+
+          <!--NInputGroupTwoNSelect-->
+          <template v-else-if="schema.component === 'NInputGroupTwoNSelect'">
+            <n-input-group>
+              <n-select
+                :size="schema.NInputGroupTwoNSelect?.size"
+                :options="schema.NInputGroupTwoNSelect?.selectOne.options"
+                v-model:value="formModel[schema.NInputGroupTwoNSelect?.selectOne.field]"
+                :style="{ width: schema.NInputGroupTwoNSelect?.selectOne.width }"
+              />
+              <n-select
+                :size="schema.NInputGroupTwoNSelect?.size"
+                :options="schema.NInputGroupTwoNSelect?.selectTwo.options"
+                v-model:value="formModel[schema.NInputGroupTwoNSelect?.selectTwo.field]"
+                :style="{ width: schema.NInputGroupTwoNSelect?.selectTwo.width }"
+              />
+              <n-input
+                :size="schema.NInputGroupTwoNSelect?.size"
                 v-model:value="formModel[schema.field]"
               />
             </n-input-group>

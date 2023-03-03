@@ -17,6 +17,7 @@ export interface FormSchema {
   isFull?: boolean;
   suffix?: string;
   NInputGroupNSelect?: object;
+  NInputGroupTwoNSelect?: object;
 }
 
 export interface FormProps {
