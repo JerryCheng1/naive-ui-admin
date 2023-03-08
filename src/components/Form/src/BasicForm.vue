@@ -92,6 +92,22 @@
               </n-space>
             </n-radio-group>
           </template>
+
+          <!--NRadioButtonGroup-->
+          <template v-else-if="schema.component === 'NRadioButtonGroup'">
+            <n-radio-group 
+            v-model:value="formModel[schema.field]"
+            :default-value="schema.componentProps.defaultValue">
+              <n-radio-button
+                v-for="item in schema.componentProps.options"
+                :size="schema.componentProps.size"
+                :key="item.value"
+                :value="item.value"
+                :label="item.label"
+              />
+            </n-radio-group>
+          </template>
+
           <!--动态渲染表单组件-->
           <component
             v-else
