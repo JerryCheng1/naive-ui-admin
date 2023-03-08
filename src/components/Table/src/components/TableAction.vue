@@ -2,7 +2,7 @@
   <div class="tableAction">
     <div class="flex items-center justify-center">
       <template v-for="(action, index) in getActions" :key="`${index}-${action.label}`">
-        <n-button v-bind="action" class="mx-2">
+        <n-button v-bind="action" class="mx-2" text size="tiny" type="info">
           {{ action.label }}
           <template #icon v-if="action.hasOwnProperty('icon')">
             <n-icon :component="action.icon" />
@@ -13,19 +13,23 @@
         v-if="dropDownActions && getDropdownList.length"
         trigger="hover"
         :options="getDropdownList"
+        size="small"
+        :show-arrow="true"
         @select="select"
       >
         <slot name="more"></slot>
-        <n-button v-bind="getMoreProps" class="mx-2" v-if="!$slots.more" icon-placement="right">
-          <div class="flex items-center">
-            <span>更多</span>
-            <n-icon size="14" class="ml-1">
-              <DownOutlined />
-            </n-icon>
-          </div>
-          <!--          <template #icon>-->
-          <!--            -->
-          <!--          </template>-->
+        <n-button
+          v-bind="getMoreProps"
+          class="mx-2"
+          v-if="!$slots.more"
+          icon-placement="left"
+          quaternary
+          type="info"
+          size="tiny"
+        >
+          <n-icon size="14">
+            <Dots />
+          </n-icon>
         </n-button>
       </n-dropdown>
     </div>
@@ -37,11 +41,10 @@
   import { ActionItem } from '@/components/Table';
   import { usePermission } from '@/hooks/web/usePermission';
   import { isBoolean, isFunction } from '@/utils/is';
-  import { DownOutlined } from '@vicons/antd';
-
+  import { Dots } from '@vicons/tabler';
   export default defineComponent({
     name: 'TableAction',
-    components: { DownOutlined },
+    components: { Dots },
     props: {
       actions: {
         type: Array as PropType<ActionItem[]>,
