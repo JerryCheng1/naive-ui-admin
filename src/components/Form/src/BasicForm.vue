@@ -2,20 +2,7 @@
   <n-form v-bind="getBindValue" :model="formModel" ref="formElRef">
     <n-grid v-bind="getGrid">
       <n-gi v-bind="schema.giProps" v-for="schema in getSchema" :key="schema.field">
-        <n-form-item :label="schema.label" :path="schema.field">
-          <!--标签名右侧温馨提示-->
-          <template #label v-if="schema.labelMessage">
-            {{ schema.label }}
-            <n-tooltip trigger="hover" :style="schema.labelMessageStyle">
-              <template #trigger>
-                <n-icon size="18" class="cursor-pointer text-gray-400">
-                  <QuestionCircleOutlined />
-                </n-icon>
-              </template>
-              {{ schema.labelMessage }}
-            </n-tooltip>
-          </template>
-
+        <n-form-item :path="schema.field">
           <!--判断插槽-->
           <template v-if="schema.slot">
             <slot
@@ -30,6 +17,7 @@
           <template v-else-if="schema.component === 'NInputGroupNSelect'">
             <n-input-group>
               <n-select
+              :show-checkmark="false"
                 :size="schema.NInputGroupNSelect?.selectOne.size"
                 :options="schema.NInputGroupNSelect?.selectOne.options"
                 v-model:value="formModel[schema.NInputGroupNSelect?.selectOne.field]"
@@ -48,11 +36,13 @@
               <n-select
                 :size="schema.NInputGroupTwoNSelect?.size"
                 :options="schema.NInputGroupTwoNSelect?.selectOne.options"
+                :show-checkmark="false"
                 v-model:value="formModel[schema.NInputGroupTwoNSelect?.selectOne.field]"
                 :style="{ width: schema.NInputGroupTwoNSelect?.selectOne.width }"
               />
               <n-select
                 :size="schema.NInputGroupTwoNSelect?.size"
+                :show-checkmark="false"
                 :options="schema.NInputGroupTwoNSelect?.selectTwo.options"
                 v-model:value="formModel[schema.NInputGroupTwoNSelect?.selectTwo.field]"
                 :style="{ width: schema.NInputGroupTwoNSelect?.selectTwo.width }"

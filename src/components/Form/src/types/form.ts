@@ -5,9 +5,6 @@ import type { ButtonProps } from 'naive-ui/lib/button';
 
 export interface FormSchema {
   field: string;
-  label: string;
-  labelMessage?: string;
-  labelMessageStyle?: object | string;
   defaultValue?: any;
   component?: ComponentType;
   componentProps?: object;
