@@ -13,46 +13,19 @@
             ></slot>
           </template>
 
-          <!--NInputGroup+NSelect-->
-          <template v-else-if="schema.component === 'NInputGroupNSelect'">
+          <!--NInputGroupWithMultiNSelect-->
+          <template v-else-if="schema.component === 'NInputGroupWithMultiNSelect'">
             <n-input-group>
-              <n-select
-              :show-checkmark="false"
-                :size="schema.NInputGroupNSelect?.selectOne.size"
-                :options="schema.NInputGroupNSelect?.selectOne.options"
-                v-model:value="formModel[schema.NInputGroupNSelect?.selectOne.field]"
-                :style="{ width: schema.NInputGroupNSelect?.selectOne.width }"
-              />
-              <n-input
-                :size="schema.NInputGroupNSelect?.input.size"
-                v-model:value="formModel[schema.field]"
-              />
+              <template v-for="NselectProps in schema.NselectPropsArray">
+                <n-select
+                  v-bind="NselectProps"
+                  v-model:value="formModel[NselectProps.field]"
+                />
+              </template>
+              <n-input v-bind="schema.NInputProps" v-model:value="formModel[schema.field]" />
             </n-input-group>
           </template>
 
-          <!--NInputGroupTwoNSelect-->
-          <template v-else-if="schema.component === 'NInputGroupTwoNSelect'">
-            <n-input-group>
-              <n-select
-                :size="schema.NInputGroupTwoNSelect?.size"
-                :options="schema.NInputGroupTwoNSelect?.selectOne.options"
-                :show-checkmark="false"
-                v-model:value="formModel[schema.NInputGroupTwoNSelect?.selectOne.field]"
-                :style="{ width: schema.NInputGroupTwoNSelect?.selectOne.width }"
-              />
-              <n-select
-                :size="schema.NInputGroupTwoNSelect?.size"
-                :show-checkmark="false"
-                :options="schema.NInputGroupTwoNSelect?.selectTwo.options"
-                v-model:value="formModel[schema.NInputGroupTwoNSelect?.selectTwo.field]"
-                :style="{ width: schema.NInputGroupTwoNSelect?.selectTwo.width }"
-              />
-              <n-input
-                :size="schema.NInputGroupTwoNSelect?.size"
-                v-model:value="formModel[schema.field]"
-              />
-            </n-input-group>
-          </template>
 
           <!--NCheckbox-->
           <template v-else-if="schema.component === 'NCheckbox'">
@@ -85,9 +58,10 @@
 
           <!--NRadioButtonGroup-->
           <template v-else-if="schema.component === 'NRadioButtonGroup'">
-            <n-radio-group 
-            v-model:value="formModel[schema.field]"
-            :default-value="schema.componentProps.defaultValue">
+            <n-radio-group
+              v-model:value="formModel[schema.field]"
+              :default-value="schema.componentProps.defaultValue"
+            >
               <n-radio-button
                 v-for="item in schema.componentProps.options"
                 :size="schema.componentProps.size"

@@ -13,8 +13,8 @@ export interface FormSchema {
   giProps?: GridItemProps;
   isFull?: boolean;
   suffix?: string;
-  NInputGroupNSelect?: object;
-  NInputGroupTwoNSelect?: object;
+  NselectPropsArray?: object | object[];
+  NInputProps?: object | object[];
 }
 
 export interface FormProps {

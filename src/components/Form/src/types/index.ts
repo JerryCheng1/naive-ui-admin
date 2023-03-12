@@ -1,7 +1,6 @@
 export type ComponentType =
   | 'NInput'
-  | 'NInputGroupNSelect'
-  | 'NInputGroupTwoNSelect'
+  | 'NInputGroupWithMultiNSelect'
   | 'NInputGroup'
   | 'NInputPassword'
   | 'NInputSearch'
